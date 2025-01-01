@@ -7,16 +7,20 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     List<Product> products = new ArrayList<>();
+    ProductDB db = new ProductDB();
 
     public void addProduct(Product p) {
 
         products.add(p);
 
+        db.save(p);
+
     }
 
     public List<Product> getAllProducts() {
 
-        return products;
+        //return products;
+        return db.getAll();
     }
 
     public Product getProduct(String name) {

@@ -6,11 +6,11 @@ public class Main {
     public static void main(String[] args) {
 
         ProductService service = new ProductService();
-        service.addProduct(new Product("Asus Vivobook","Laptop","Desk",2022));
-        service.addProduct(new Product("Hdmi cable","Cable","Drawer",2020));
-        service.addProduct(new Product("Java Black Book","Cable","Shelf",2025));
-        service.addProduct(new Product("Mac Studio","Computer","Table",2028));
-        service.addProduct(new Product("Logitech Mouse","Mouse","Desk",2028));
+//        service.addProduct(new Product("Asus Vivobook","Laptop","Desk",2022));
+//        service.addProduct(new Product("Hdmi cable","Cable","Drawer",2020));
+//        service.addProduct(new Product("Java Black Book","Cable","Shelf",2025));
+//        service.addProduct(new Product("Mac Studio","Computer","Table",2028));
+//        service.addProduct(new Product("Logitech Mouse","Mouse","Desk",2028));
 
         List<Product> products = service.getAllProducts();
         for(Product p : products){
