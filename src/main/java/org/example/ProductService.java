@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductService {
 
@@ -19,52 +20,79 @@ public class ProductService {
     }
 
     public Product getProduct(String name) {
+        //converting the original method to a stream
 
-        for(Product p : products){
-            if(p.getName()==name){
-                return p;
-            }
-        }
-        return null;
+        return products.stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+
+//        for(Product p : products){
+//            if(p.getName()==name){
+//                return p;
+//            }
+//        }
+//        return null;
     }
 
     public List<Product> getProductLocation(String location) {
-        List<Product> productLocation = new ArrayList<>();
+        //converting the original method to a stream
+        return products.stream()
+                .filter(p -> p.getPlace().equals(location))
+                .collect(Collectors.toList());
 
-        for(Product p : products){
-            if(p.getPlace()==location){
-                productLocation.add(p);
-            }
-        }
-        return productLocation;
+
+//        List<Product> productLocation = new ArrayList<>();
+//
+//        for(Product p : products){
+//            if(p.getPlace()==location){
+//                productLocation.add(p);
+//            }
+//        }
+//        return productLocation;
     }
 
     public List<Product> getProductWarranty(int warranty) {
-        List<Product> productWarranty = new ArrayList<>();
+        //converting the original method to a stream
+        return products.stream()
+                .filter(p -> p.getWarranty()>warranty)
+                .collect(Collectors.toList());
 
-        for(Product p : products){
-            if (p.getWarranty()>warranty){
-                productWarranty.add(p);
-            }
-        }
-        return productWarranty;
+//        List<Product> productWarranty = new ArrayList<>();
+//
+//        for(Product p : products){
+//            if (p.getWarranty()>warranty){
+//                productWarranty.add(p);
+//            }
+//        }
+//        return productWarranty;
     }
 
     public List<Product> getProductText(String text) {
-        List<Product> productText = new ArrayList<>();
+        //converting the original method to a stream
 
         String str = text.toLowerCase();
 
-        for(Product p : products){
-            String name = p.getName().toLowerCase();
-            String type = p.getType().toLowerCase();
-            String place = p.getPlace().toLowerCase();
+        return products.stream()
+                .filter(p -> p.getName().toLowerCase().contains(str) ||
+                        p.getType().toLowerCase().contains(str) ||
+                        p.getPlace().toLowerCase().contains(str))
+                .collect(Collectors.toList());
 
-            if(name.contains(str) || type.contains(str) || place.contains(str)){
-                productText.add(p);
-            }
-        }
-        return productText;
+//        List<Product> productText = new ArrayList<>();
+//
+//        String str = text.toLowerCase();
+//
+//        for(Product p : products){
+//            String name = p.getName().toLowerCase();
+//            String type = p.getType().toLowerCase();
+//            String place = p.getPlace().toLowerCase();
+//
+//            if(name.contains(str) || type.contains(str) || place.contains(str)){
+//                productText.add(p);
+//            }
+//        }
+//        return productText;
 
     }
 
